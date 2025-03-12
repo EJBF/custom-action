@@ -28,5 +28,5 @@ runs:
       run: |
         npm ci
       # echo "::set-output name=cache::'${{ inputs.caching }}'"
-        echo "cache="'${{ inputs.caching }}'">>$GITHUB_OUTPUT
+        echo "cache='${{ inputs.caching }}'">>$GITHUB_OUTPUT
       shell: bash
