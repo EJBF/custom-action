@@ -3,7 +3,10 @@ on:
   push:
     branches:
       - none
+  workflow_dispatch:
+
 jobs:
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -31,6 +34,7 @@ jobs:
 
       - name: Lint code
         run: npm run lint
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -59,6 +63,7 @@ jobs:
         with:
           name: test-report
           path: test.json
+
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -86,6 +91,7 @@ jobs:
         with:
           name: dist-files
           path: dist
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -101,11 +107,9 @@ jobs:
         run: ls
       - name: Deploy site
         run: echo "Deploying..."
+
   information:
     runs-on: ubuntu-latest
     steps:
       - name: Run custom action
         uses: ./.github/actions/deploy-javascript
-
-        
-
