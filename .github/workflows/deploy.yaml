@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
       - name: Get build artifacts
         uses: actions/download-artifact@v4.1.9
         with:
@@ -111,5 +111,7 @@ jobs:
   information:
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v4.2.2
       - name: Run custom action
         uses: ./.github/actions/deploy-javascript
