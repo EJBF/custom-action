@@ -19,4 +19,4 @@ outputs:
   
 runs:
   using: 'docker'
-  image: 'dickerfile'
+  image: 'dockerfile'
