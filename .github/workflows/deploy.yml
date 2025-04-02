@@ -114,7 +114,7 @@ jobs:
       - name: Get AWS permissions
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws::iam::528757803669:role/javascript-action
+          role-to-assume: arn:aws:iam::528757803669:role/javascript-action
           aws-region: us-east-1
       - name: Deploy site
         id: deploy
