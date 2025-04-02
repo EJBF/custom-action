@@ -95,9 +95,9 @@ jobs:
           path: dist
 
   deploy:
-    permissions:
-      id-token: write
-      contents: read
+    # permissions:
+      # id-token: write
+      # contents: read
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -110,22 +110,22 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
-      - name: Get AWS permissions
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: arn:aws:iam::528757803669:role/javascript-action
-          aws-region: us-east-1
+      # - name: Get AWS permissions
+        # uses: aws-actions/configure-aws-credentials@v4
+        # with:
+        #   role-to-assume: arn:aws:iam::528757803669:role/<role-name>
+        #   aws-region: us-east-1
       - name: Deploy site
         id: deploy
       # run: echo "Deploying..."
       # uses: ./.github/actions/deploy-javascript
         uses: ./.github/actions/deploy-docker
-        # env:
-        #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
           bucket: gha-javascript-action
-          # bucket-region: us-east-1
+          bucket-region: us-east-1
           dist-folder: ./dist
       - name: Output information
         run: |
