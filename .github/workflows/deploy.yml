@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       # - name: Cache dependencies
       #   id: cache
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       # - name: Cache dependencies
       #   id: cache
@@ -61,7 +61,7 @@ jobs:
         run: npm run test
       - name: Upload test report
         if: failure() && steps.run-tests.outcome == 'failure'
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4
         with:
           name: test-report
           path: test.json
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       # - name: Cache dependencies
       #   id: cache
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
       - name: Get build artifacts
         uses: actions/download-artifact@v4
         with:
@@ -110,7 +110,6 @@ jobs:
           path: ./dist
       - name: Output contents
         run: ls
-      
       - name: Get AWS permissions
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -126,7 +125,7 @@ jobs:
         #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
           bucket: gha-javascript-action
-          bucket-region: us-east-1
+          # bucket-region: us-east-1
           dist-folder: ./dist
       - name: Output information
         run: |
